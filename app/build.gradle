@@ -1,0 +1,158 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.archinamon.aspectj-ext'
+
+aspectj{
+    includeJar 'com.ironsource.mediationsdk.integration.IntegrationHelper'
+}
+android {
+    compileSdkVersion 29
+    buildToolsVersion '29.0.0'
+    defaultConfig {
+        applicationId "com.ironsource.ironsourcesdkdemo"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+//Include IronSource maven repositories
+repositories {
+    maven {
+        //IronSource SDK
+        url "https://dl.bintray.com/ironsource-mobile/android-sdk"
+    }
+    maven {
+        //IronSource Adapters
+        url "http://dl.bintray.com/ironsource-mobile/android-adapters"
+    }
+
+    maven {
+        //Adcolony SDK
+        url "https://adcolony.bintray.com/AdColony"
+    }
+    maven { 
+        //Chartboost SDK
+        url "https://chartboostmobile.bintray.com/Chartboost"
+    }
+    maven {
+        //HyperMX SDK
+        url "https://raw.githubusercontent.com/HyprMXMobile/Android-SDKs/master"
+    }
+    maven {
+        //Moat For Mopub
+        url "https://s3.amazonaws.com/moat-sdk-builds"
+    }
+    maven {
+        //Vungle SDK
+        url 'https://jitpack.io'
+    }
+    maven {
+        //Fyber SDK
+        url  'https://fyber.bintray.com/marketplace'
+    }
+
+    //Maio SDK
+    maven{ url "https://imobile-maio.github.io/maven" }
+
+    // For InMobi
+    jcenter()
+}
+
+
+dependencies {
+    //noinspection GradleCompatible
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    //Add IronSource Mediation SDK dependency.
+    implementation 'com.ironsource.sdk:mediationsdk:7.0.4.1'
+
+    //Add AdNetworks adapters dependencies - every adapter contains also the ad network SDK.
+    //Make sure you also configure the AdNetworks in your dashboard.
+    //For more information: http://developers.ironsrc.com/ironsource-mobile/android/mediation-networks-android/
+
+//    //AdColony
+//    implementation 'com.ironsource.adapters:adcolonyadapter:4.3.4'
+//    implementation 'com.adcolony:sdk:4.2.4'
+//
+//    //AdMob
+//    //to use Admob Adapter uncomment the appid in the manifest
+//    implementation 'com.ironsource.adapters:admobadapter:4.3.14'
+//    implementation 'com.google.android.gms:play-services-ads:19.4.0'
+//
+//    //Amazon
+//    implementation 'com.ironsource.adapters:amazonadapter:4.3.2'
+//    implementation 'com.ironsource.adapters:amazonsdk:5.9.0@jar'
+//
+//    //AppLovin
+//    implementation 'com.ironsource.adapters:applovinadapter:4.3.20'
+//    implementation 'com.applovin:applovin-sdk:9.14.6'
+//
+//    //Chartboost
+//    implementation 'com.ironsource.adapters:chartboostadapter:4.3.4'
+//    implementation 'com.chartboost:chartboost-sdk:8.1.0'
+//    implementation 'com.google.android.gms:play-services-base:17.2.1'
+//
+//    //Facebook
+//    implementation 'com.ironsource.adapters:facebookadapter:4.3.23'
+//    implementation 'com.facebook.android:audience-network-sdk:6.2.0'
+//
+//    //Fyber
+//    implementation 'com.ironsource.adapters:fyberadapter:4.3.9'
+//    implementation 'com.fyber.vamp:core-sdk:7.7.3'
+//    implementation 'com.fyber.vamp:video-kit:7.7.3'
+//    implementation 'com.fyber.vamp:mraid-kit:7.7.3'
+//
+//    //HyprMX
+//    implementation 'com.ironsource.adapters:hyprmxadapter:4.1.7'
+//    implementation 'com.hyprmx.android:HyprMX-SDK:5.1.2'
+//
+//    //InMobi
+//    implementation 'com.ironsource.adapters:inmobiadapter:4.3.8'
+//    implementation 'com.inmobi.monetization:inmobi-ads:9.1.0'
+//    implementation 'com.squareup.picasso:picasso:2.71828'
+//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+//    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+//
+//    //Maio
+//    implementation 'com.ironsource.adapters:maioadapter:4.1.7'
+//    implementation 'com.google.android.gms:play-services-ads:19.1.0'
+//    implementation 'com.maio:android-sdk:1.1.13'
+//
+//    //MyTarget
+//    implementation 'com.ironsource.adapters:mytargetadapter:4.1.4'
+//    implementation 'com.my.target:mytarget-sdk:5.11.3'
+//    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.1'
+//    implementation 'com.google.android.exoplayer:exoplayer-hls:2.11.1'
+//
+//    //Pangle
+//    implementation 'com.ironsource.adapters:pangleadapter:4.1.5'
+//    implementation 'com.bytedance.sdk:pangle-sdk:3.1.7.4'
+//
+//    //Tapjoy
+//    implementation 'com.ironsource.adapters:tapjoyadapter:4.1.15'
+//    implementation 'com.tapjoy:tapjoy-android-sdk:12.7.1'
+//
+//    //UnityAds
+//    implementation 'com.ironsource.adapters:unityadsadapter:4.3.8'
+//    implementation 'com.unity3d.ads:unity-ads:3.5.1'
+//
+//    //Vungle
+//    implementation 'com.ironsource.adapters:vungleadapter:4.3.7'
+//    implementation 'com.vungle:publisher-sdk-android:6.8.1'
+}
